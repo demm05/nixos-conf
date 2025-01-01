@@ -2,17 +2,17 @@
 {
 	imports = [
 		../minimal.nix
-		../../../home/hyprland
 	];
-	programs.hyprland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+	programs.hyprland = {
+		enable = true;
+    	xwayland.enable = true;
+	};
+  	environment.systemPackages = with pkgs; [ kitty pyprland];
+    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
 	xdg.portal.enable = true;
 	xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-	programs.hyprland = {
-    	xwayland.enable = true;
-	};
 
 	environment = {
     	sessionVariables = {
@@ -41,9 +41,5 @@
 
         	NVD_BACKEND = "direct";
     	};
-
-    	systemPackages = with pkgs; [
-        	pyprland
-    	];
 	};
 }

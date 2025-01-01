@@ -6,6 +6,7 @@ in
 	imports = [
 		./hardware-configuration.nix
 		../../nixos/desktop/gnome.nix
+		#../../nixos/desktop/hyprland
 		../../nixos/hardware/nvidia.nix
 		../../nixos/hardware/nvidia-offload.nix
 		../../nixos/laptop 

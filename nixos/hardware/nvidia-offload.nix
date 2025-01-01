@@ -2,7 +2,7 @@
 {
   hardware.nvidia.prime = {
     offload.enable = true;
-    enableOffloadCmd = true;
+    offload.enableOffloadCmd = true;
     nvidiaBusId = "PCI:1:0:0";  # Replace with your NVIDIA GPU ID
     intelBusId = "PCI:100:0:0"; # Replace with your Intel GPU ID
   };
