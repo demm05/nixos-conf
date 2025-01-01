@@ -3,7 +3,6 @@
 	imports = [
 		./minimal.nix	
 		../sound.nix
-		../system/basic.nix
 	];
   services.xserver = {
     enable = true;
