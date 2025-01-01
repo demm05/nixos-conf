@@ -5,6 +5,7 @@
 		./optimization.nix
 	];
 
+	services.libinput.enable = true;
 	services.conservation-mode.enable = true;
 	services.conservation-mode.conservationModeEnabled = true; 
 	specialisation = {
