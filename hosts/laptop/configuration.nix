@@ -4,11 +4,12 @@ let
 in
 {
 	imports = [
-		../../nixos/sound.nix
 		./hardware-configuration.nix
+		../../nixos/sound.nix
 		../../nixos/system/basic.nix
 		../../nixos/hardware/nvidia.nix
 		../../nixos/desktop/gnome.nix
+		../../nixos/laptop 
     ];
 
 	hardware.nvidia.prime = {
@@ -17,8 +18,8 @@ in
 		amdgpuBusId = "PCI:100:0:0";
 	};
 
-	# By default true
-	#options.conservationModeEnabled.enable = false;
+	services.conservation-mode.enable = true;
+	services.conservation-mode.conservationModeEnabled = true; 
 
   networking.hostName = hosts.workstation.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
