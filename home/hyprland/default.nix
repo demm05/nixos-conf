@@ -1,14 +1,14 @@
 { inputs, pkgs, ... }:
 {
 	home.packages = with pkgs; [
-		kitty pyprland
+		kitty pyprland wofi xfce.thunar 
 	];
 	wayland.windowManager.hyprland = {
 	enable = true;
 	settings = {
 		# Your existing settings here, e.g.,
 		"$mod" = "SUPER"; 
-		"$terminal" = "alacritty"; # Or your preferred terminal
+		"$terminal" = "kitty"; # Or your preferred terminal
 		"$fileManager" = "thunar"; # Or your preferred file manager
 		"$menu" = "wofi --show drun"; # Or your preferred menu
 
@@ -21,6 +21,7 @@
 			"$mod, R, exec, $menu"
 			"$mod, P, pseudo" # dwindle
 			"$mod, J, togglesplit" # dwindle
+			"$mod, F, exec, zen"
 
 			# Move focus with mainMod + arrow keys
 			"$mod, left, movefocus, l"
@@ -52,31 +53,31 @@
 			"$mod SHIFT, 9, movetoworkspace, 9"
 			"$mod SHIFT, 0, movetoworkspace, 10"
 
-			# Example special workspace (scratchpad)
-			"$mod, S, togglespecialworkspace, magic"
-			"$mod SHIFT, S, movetoworkspace, special:magic"
+				#		# Example special workspace (scratchpad)
+				#		"$mod, S, togglespecialworkspace, magic"
+				#		"$mod SHIFT, S, movetoworkspace, special:magic"
 
-			# Scroll through existing workspaces with mainMod + scroll
-			"$mod, mouse_down, workspace, e+1"
-			"$mod, mouse_up, workspace, e-1"
+				#		# Scroll through existing workspaces with mainMod + scroll
+				#		"$mod, mouse_down, workspace, e+1"
+				#		"$mod, mouse_up, workspace, e-1"
 
-			# Move/resize windows with mainMod + LMB/RMB and dragging
-			"$mod, mouse:272, movewindow"
-			"$mod, mouse:273, resizewindow"
+				#		# Move/resize windows with mainMod + LMB/RMB and dragging
+				#		"$mod, mouse:272, movewindow"
+				#		"$mod, mouse:273, resizewindow"
 
-			# Laptop multimedia keys for volume and LCD brightness
-			",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-			",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-			",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-			",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-			",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
-			",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+				#		# Laptop multimedia keys for volume and LCD brightness
+				#		",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+				#		",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+				#		",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+				#		",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+				#		",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+				#		",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
 
-			# Requires playerctl
-			", XF86AudioNext, exec, playerctl next"
-			", XF86AudioPause, exec, playerctl play-pause"
-			", XF86AudioPlay, exec, playerctl play-pause"
-			", XF86AudioPrev, exec, playerctl previous"
+				#		# Requires playerctl
+				#		", XF86AudioNext, exec, playerctl next"
+				#		", XF86AudioPause, exec, playerctl play-pause"
+				#		", XF86AudioPlay, exec, playerctl play-pause"
+				#		", XF86AudioPrev, exec, playerctl previous"
 		];
 	};
 	};
