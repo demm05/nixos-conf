@@ -9,6 +9,6 @@
 	services.conservation-mode.enable = true;
 	services.conservation-mode.conservationModeEnabled = true; 
 	specialisation = {
-		nvidia.configuration = import ../../nixos/hardware/disable_gpu.nix;
+		igpu.configuration = import ../../nixos/hardware/disable_gpu.nix;
 	};
 }

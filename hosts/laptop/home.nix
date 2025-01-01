@@ -5,10 +5,11 @@ in
 {
 	imports = [
 		../../home
+		../../home/hyprland
 	];
 
 	home.packages = with pkgs ; [
-		home-manager libgcc libgcc rustc cargo zotero google-chrome appimage-run gnumake firefox keepassxc
+		home-manager libgcc libgcc rustc cargo zotero appimage-run gnumake keepassxc
 		pciutils
 		powertop
 	]; 
