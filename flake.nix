@@ -16,6 +16,10 @@
 			url = "github:hyprwm/Hyprland";
 			inputs.nixpkgs.follows = "nixpkgs";
 		};
+		hyprland-plugins = {
+			url = "github:hyprwm/hyprland-plugins";
+			inputs.hyprland.follows = "hyprland";
+		};
 	};
 
 	outputs = { self, ... }@inputs:
@@ -42,6 +46,7 @@
 		mkNixOsConfiguration = { host, nixpkgs, home-manager, modules ? [] }:
 		nixpkgs.lib.nixosSystem {
 			system = host.arch;
+			specialArgs = { inherit inputs; };
 			modules = [
 				./hosts/${host.dir}/configuration.nix
 				home-manager.nixosModules.home-manager

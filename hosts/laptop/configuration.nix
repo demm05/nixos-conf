@@ -7,14 +7,9 @@ in
 		./hardware-configuration.nix
 		../../nixos/desktop/gnome.nix
 		../../nixos/hardware/nvidia.nix
+		../../nixos/hardware/nvidia-offload.nix
 		../../nixos/laptop 
     ];
-
-	hardware.nvidia.prime = {
-		sync.enable = true;
-		nvidiaBusId = "PCI:1:0:0";
-		amdgpuBusId = "PCI:100:0:0";
-	};
 
 	networking.hostName = hosts.workstation.hostname; 
 	networking.networkmanager.enable = true;
