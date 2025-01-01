@@ -7,7 +7,16 @@ in
 		../../nixos/sound.nix
 		./hardware-configuration.nix
 		../../nixos/system/basic.nix
+		../../nixos/hardware/nvidia.nix
+		../../nixos/desktop/gnome.nix
     ];
+
+	hardware.nvidia.prime = {
+		sync.enable = true;
+		nvidiaBusId = "PCI:1:0:0";
+		amdgpuBusId = "PCI:100:0:0";
+	};
+
   systemd.services.enable-conservation = {
     description = "Enable Conservation Mode";
     after = [ "acpi.service" ];
@@ -22,20 +31,6 @@ in
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.networkmanager.enable = true;
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -55,21 +50,6 @@ in
 
   #hardware.enableAllFirmware = true;
 
-  services.xserver.videoDrivers = ["nvidia"]; # Load nvidia driver for xorg or way
-  hardware.graphics.enable = true; # Enable OpenGL
-  hardware.nvidia = {
-    modesetting.enable = true;
-    #powerManagement.enable = true;
-    #powerManagement.finegrained = true;
-    open = false;
-    nvidiaSettings = true;
-    prime = {
-		sync.enable = true;
-		nvidiaBusId = "PCI:1:0:0";
-		amdgpuBusId = "PCI:100:0:0";
-    };
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
   specialisation = {
     disable-dGPU.configuration = import ../../nixos/hardware/disable_gpu.nix;
   };
