@@ -6,30 +6,22 @@ in
 	imports = [
 		../../nixos/sound.nix
 		./hardware-configuration.nix
+		../../nixos/system/basic.nix
     ];
-
+  systemd.services.enable-conservation = {
+    description = "Enable Conservation Mode";
+    after = [ "acpi.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      # Use 'bash' to interpret the script
+      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 1 > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"; 
+    };
+  };
   networking.hostName = hosts.workstation.hostname; 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/London";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_GB.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_GB.UTF-8";
-    LC_IDENTIFICATION = "en_GB.UTF-8";
-    LC_MEASUREMENT = "en_GB.UTF-8";
-    LC_MONETARY = "en_GB.UTF-8";
-    LC_NAME = "en_GB.UTF-8";
-    LC_NUMERIC = "en_GB.UTF-8";
-    LC_PAPER = "en_GB.UTF-8";
-    LC_TELEPHONE = "en_GB.UTF-8";
-    LC_TIME = "en_GB.UTF-8";
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -55,29 +47,13 @@ in
     extraGroups = [ "networkmanager" "wheel" "audio"];
   };
 
-  # Install firefox.
   programs.tmux.enable = true;
   programs.tmux.extraConfig = '' '';
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     wget
-     vim
-     neovim
-     lshw
-     coreutils
-     git
-     libgcc
-     rustup
-     vlc
-     xclip
-  ];
-
-  	#hardware.enableAllFirmware = true;
+  #hardware.enableAllFirmware = true;
 
   services.xserver.videoDrivers = ["nvidia"]; # Load nvidia driver for xorg or way
   hardware.graphics.enable = true; # Enable OpenGL
@@ -156,12 +132,10 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
   system.autoUpgrade.enable = true;
-  #system.autoUpgrade.allowReboot = true;
   environment.variables.EDITOR = "vim";
   boot.loader = {
   	systemd-boot.enable = true;
   	systemd-boot.configurationLimit = 10;
   	efi.canTouchEfiVariables = true;
   };
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 }
