@@ -3,6 +3,7 @@
 	imports = [
 		./fonts.nix
 		./programs
+		./tmux.nix
 	];
 	home.packages = with pkgs ; [
 		home-manager libgcc libgcc rustc cargo zotero  appimage-run gnumake keepassxc
