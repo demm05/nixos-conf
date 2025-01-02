@@ -4,10 +4,10 @@
     enable = true;
     # Make sure to include all the plugins from your tmux.conf
     plugins = with pkgs.tmuxPlugins; [
-      tmux-sensible
+      sensible
       vim-tmux-navigator
-      catppuccin-tmux 
-      tmux-yank
+      catppuccin
+      yank
       # If any of these aren't in nixpkgs, you'll need to package them manually (see below)
     ];
     extraConfig = ''

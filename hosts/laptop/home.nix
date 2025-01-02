@@ -5,13 +5,14 @@ in
 {
 	imports = [
 		../../home
-		../../home/hyprland
+		../../home/hyprland { username = users.default; }
 	];
 
 	home.packages = with pkgs ; [
 		home-manager libgcc libgcc rustc cargo zotero appimage-run gnumake keepassxc
 		pciutils
 		powertop
+		alacritty
 	]; 
 
 	home = {
