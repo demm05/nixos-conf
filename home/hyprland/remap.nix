@@ -1,10 +1,11 @@
 { ... }:
 {
-	wayland.windowManagaersettings.hyprland.settings = {
+	wayland.windowManager.hyprland.settings = {
 		"$mod" = "SUPER"; 
 		"$terminal" = "kitty"; # Or your preferred terminal
 		"$fileManager" = "thunar"; # Or your preferred file manager
 		"$menu" = "wofi --show drun"; # Or your preferred menu
+		"$browser" = "zen";
 
 		bind = [
 			"$mod,Return,exec,$terminal"
@@ -70,8 +71,8 @@
 			"$modCONTROL,left,workspace,e-1"
 			"$mod,mouse_down,workspace, e+1"
 			"$mod,mouse_up,workspace, e-1"
-			"$mod,mouse:272,movewindow" # bindm is not needed in this format
-			"$mod,mouse:273,resizewindow" # bindm is not needed in this format
+			"$mod,mouse:272,movewindow"
+			#"$mod,mouse:273,resizewindow"
 			"ALT,Tab,cyclenext" 
 			"ALT,Tab,bringactivetotop" 
 			",XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

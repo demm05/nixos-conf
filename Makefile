@@ -2,6 +2,9 @@ rebuild:
 	sudo nixos-rebuild switch --flake .#laptop
 	
 test:
+	sudo nixos-rebuild test --flake .#laptop
+
+build:
 	nixos-rebuild build --flake .#laptop
 
 update:

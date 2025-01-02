@@ -51,7 +51,7 @@
 				./hosts/${host.dir}/configuration.nix
 				home-manager.nixosModules.home-manager
 				{
-					home-manager.extraSpecialArgs = { inherit inputs; pkgs = mkConfigurePkgs{ inherit host nixpkgs; };};
+					home-manager.extraSpecialArgs = { inherit host inputs; pkgs = mkConfigurePkgs{ inherit host nixpkgs; };};
 					home-manager.useGlobalPkgs = true;
 					home-manager.users."${host.user}" = import ./hosts/${host.dir}/home.nix;
 				}

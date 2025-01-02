@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ host, pkgs, ... }:
 let
-	users = import ../../config/users.nix;
+	username = host.user;
 in
 {
 	imports = [
 		../../home
-		../../home/hyprland { username = users.default; }
+		../../home/hyprland
 	];
 
 	home.packages = with pkgs ; [
@@ -16,8 +16,8 @@ in
 	]; 
 
 	home = {
-		username = users.default;
-		homeDirectory = "/home/${users.default}";
+		username = username;
+		homeDirectory = "/home/${username}";
 		stateVersion = "24.11"; 
 	};
 }
