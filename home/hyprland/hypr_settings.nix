@@ -26,7 +26,7 @@
 			"sleep 1.5 && swww img /home/${config.home.username}/Pictures/Wallpapers/beautifulmountainscape.jpg"
 		];
 		
-		monitor = ",preferred,auto,1";
+		monitor = ",preferred,auto,2";
 			# ${extraMonitorSettings}  # If you have this defined somewhere
 		
 		general = {
