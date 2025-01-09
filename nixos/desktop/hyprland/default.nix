@@ -2,7 +2,6 @@
 {
 	imports = [
 		../minimal.nix
-		./stylix.nix
 	];
 
 	programs = {
@@ -12,6 +11,9 @@
 				thunar-archive-plugin
 				thunar-volman
 			];
+		};
+		dconf = {
+			enable = true;
 		};
 		hyprland = {
 			enable = true;

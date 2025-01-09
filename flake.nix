@@ -20,6 +20,11 @@
 			url = "github:hyprwm/hyprland-plugins";
 			inputs.hyprland.follows = "hyprland";
 		};
+		#inputs.nixvim = {
+		#	url = "github:nix-community/nixvim/nixos-24.11";
+		#	inputs.nixpkgs.follows = "nixpkgs";
+		#};
+    	nixvim.url = "github:elythh/nixvim";
 	};
 
 	outputs = { self, ... }@inputs:
@@ -51,7 +56,10 @@
 				./hosts/${host.dir}/configuration.nix
 				home-manager.nixosModules.home-manager
 				{
-					home-manager.extraSpecialArgs = { inherit host inputs; pkgs = mkConfigurePkgs{ inherit host nixpkgs; };};
+					home-manager.extraSpecialArgs = { 
+						inherit host inputs; 
+						pkgs = mkConfigurePkgs{ inherit host nixpkgs; };
+					};
 					home-manager.useGlobalPkgs = true;
 					home-manager.users."${host.user}" = import ./hosts/${host.dir}/home.nix;
 				}
@@ -63,6 +71,7 @@
 			host = hosts.workstation;
 			nixpkgs = inputs.nixpkgs;
 			home-manager = inputs.home-manager;
+			modules = [ ];
 		};
 	};
 }

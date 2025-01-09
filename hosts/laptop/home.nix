@@ -1,11 +1,11 @@
-{ host, pkgs, ... }:
+{ inputs, host, pkgs, ... }:
 let
 	username = host.user;
 in
 {
 	imports = [
 		../../home
-		../../home/hyprland
+		#../../home/hyprland
 	];
 
 	home.packages = with pkgs ; [
