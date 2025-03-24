@@ -1,8 +1,8 @@
-{ inputs, pkgs, ...}:
+{ inputs, pkgs, ... }:
 {
-	home.packages = with pkgs; [
-		inputs.zen-browser.packages."${system}".default
-		firefox
-		google-chrome
-	];
+  home.packages = with pkgs; [
+    inputs.zen-browser.packages."${system}".default
+    #firefox
+    google-chrome
+  ];
 }

@@ -1,5 +1,10 @@
-{ config, pkgs, lib, ... }:
-with lib; 
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib;
 {
   options.services.conservation-mode = mkOption {
     type = types.submodule {
@@ -7,7 +12,7 @@ with lib;
         enable = mkEnableOption "conservation mode service";
 
         # Define 'conservationModeEnabled' here, within the submodule options
-        conservationModeEnabled = mkOption { 
+        conservationModeEnabled = mkOption {
           type = types.bool;
           default = true;
           description = "Enable conservation mode on startup";
@@ -22,12 +27,12 @@ with lib;
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
-	  ExecStart = 
+      ExecStart =
         let
           mode = if config.services.conservation-mode.conservationModeEnabled then "1" else "0";
         in
         # Directly use bash -c instead of writeShellScriptBin
-        "${pkgs.bash}/bin/bash -c 'echo ${mode} > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'"; 
+        "${pkgs.bash}/bin/bash -c 'echo ${mode} > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'";
     };
   };
 }
